@@ -1,0 +1,235 @@
+﻿@model  WebApiGNB.Models.TotalconvertModel
+
+@{
+    ViewBag.Title = "Home Page";
+
+}
+
+<style>
+    .navbar-custom {
+        background-color: #ff5500;
+    }
+
+    /* change the brand and text color */
+    .navbar-custom .navbar-brand,
+    .navbar-custom .navbar-text {
+        color: rgba(255,255,255,.8);
+    }
+
+    /* change the link color */
+    .navbar-custom .navbar-nav .nav-link {
+        color: rgba(255,255,255,.5);
+    }
+
+    /* change the color of active or hovered links */
+    .navbar-custom .nav-item.active .nav-link,
+    .navbar-custom .nav-item:hover .nav-link {
+        color: #ffffff;
+    }
+
+    fieldset {
+        min-width: 0;
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }
+
+    .well {
+        min-height: 20px;
+        padding: 19px;
+        margin-bottom: 20px;
+        background-color: #f5f5f5;
+        border: 1px solid #e3e3e3;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    }
+
+    .well-legend {
+        display: block;
+        font-size: 14px;
+        width: auto;
+        padding: 2px 7px 2px 5px;
+        margin-bottom: 20px;
+        line-height: inherit;
+        color: #333;
+        background: #fff;
+        border: 1px solid #e3e3e3;
+        border-radius: 4px;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    }
+
+    .label {
+        text-align: center;
+        line-height: 150%;
+        font-size: .85em;
+ 
+    }
+</style>
+
+<div class="container">
+    <div class="container bg-info text-white">
+
+        <div class="row">
+
+            <div class="col-md-8">
+
+                <form>
+                    <fieldset class="well">
+                        <legend class="well-legend">Transaction's table</legend> 
+                   
+                        <input type="button" id="loadtransactiontbl" value='Load Table' onclick="location.href='@Url.Action("PaintTableSku", "Home")'"/>
+                         
+                            <div class="row">
+                                <table class="table table-sm alert">
+                                    <thead>
+                                        <tr>
+                                            <th>Transaction sku</th>
+                                            <th>Amount</th>
+                                            <th>Currency</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="TblTranssationsSku"></tbody>
+                                    @if (Model.Tskus.Count > 0)
+                                    {
+                                        foreach (var item in Model.Tskus)
+                                        {
+                                                    <tr>
+                                                        <td> @item.TransactionSku </td>
+                                                        <td> @item.Amount </td>
+                                                        <td> @item.Currency </td>
+                                                    </tr>
+                                                }
+
+                                    }
+                                </table>
+                            </div>
+
+                    </fieldset>
+                    <div class="row">
+
+                        <fieldset class="well">
+                            <legend class="well-legend">Select Sku to convert: </legend>
+   
+                            Sku name: <input type="text" name="Skuname" id="Skuname">
+                            Currency: <select id="Currency">
+                                <option value="EUR">EUR</option>
+                                <option value="USD">USD</option>
+                                <option value="CAD">CAD</option>
+                            </select>
+                            <input type="button" id="loadConvertedtbl" value='Send To Calculate' onclick="onClick()" />
+                          
+                        </fieldset>
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-4">
+                <form>
+                    <fieldset class="well">
+                        <legend class="well-legend">rate's Table</legend>
+                        <div class="row">
+                            <input type="button" id="loadTableRate" value='Load Table' onclick="location.href='@Url.Action("PaintTableRate", "Home")'" />
+
+                            <table class="table table-sm alert">
+                                <thead>
+                                    <tr>
+                                        <th>From</th>
+                                        <th>To</th>
+                                        <th>Rate</th>
+                                    </tr>
+                                </thead>
+                                @if (Model.ConversionModels.Count > 0)
+                                    {
+                                        foreach (var item in Model.ConversionModels)
+                                        {
+                                            <tr>
+                                                <td> @item.From  </td>
+                                                <td> @item.To </td>
+                                                <td> @item.Rate </td>
+                                            </tr>
+                                            }
+                                        }
+                            </table>
+                        </div>
+                    </fieldset>
+
+                    <div class="row">
+
+                        <fieldset class="well">
+                            <legend class="well-legend">Total Amount: </legend>
+
+                            @if (Model.TotalAmount != "")
+                             {
+                                     <label><h1>@Model.TotalAmount €</h1></label>
+
+                              }
+                              else
+                              {
+                                   <label> 0 €</label>
+                              }
+                        </fieldset>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="row">
+
+                    <table class="table table-sm alert">
+                        <thead>
+                            <tr>
+                                <th>Transaction sku</th>
+                                <th>Amount</th>
+                                <th>Amount Currency</th>
+                                <th>Change</th>
+                                <th>Currency</th>
+                            </tr>
+                        </thead>
+                        @if (Model.Convertedlist.Count > 0)
+                                {
+                                    foreach (var item in Model.Convertedlist)
+                                    {
+                        <tr>
+                            <td> @item.sku  </td>
+                            <td> @item.amount</td>
+                            <td> @item.amountCurrency</td>
+                            <td> @item.change </td>
+                            <td> @item.currency </td>
+                        </tr>
+                                    }
+                                 }
+                    </table>
+      
+                </div>
+            </div>
+            <p>
+                @*   <a class="btn btn-default" >Send Transactions&raquo;</a>*@
+            </p>
+        </div>
+    </div>
+</div>
+<script>
+
+
+
+    function onClick() {
+
+        var sku = $('#Skuname').val();
+        var currency = $('#Currency').val();
+
+        window.location = '@Html.Raw(Url.Action("PaintTableConversions", "Home",new { SkuAndCurr = "_SaC" }))'.replace("_SaC", sku.concat('-', currency));
+     };
+
+</script>
+

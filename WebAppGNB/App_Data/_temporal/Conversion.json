@@ -1,0 +1,11 @@
+[
+{"From":"EUR","To":"USD","Rate":"1.359"}
+{"From":"CAD","To":"EUR","Rate":"0.732"}
+{"From":"USD","To":"EUR","Rate":"0.736"}
+{"From":"EUR","To":"CAD","Rate":"1.366"}
+{"TransactionSku":"T2006","Amount":"10.00","Currency":"USD"}
+{"TransactionSku":"M2007","Amount":"34.57","Currency":"CAD"}
+{"TransactionSku":"R2008","Amount":"17.95","Currency":"USD"}
+{"TransactionSku":"T2006","Amount":"7.63","Currency":"EUR"}
+{"TransactionSku":"B2009","Amount":"21.23","Currency":"USD"}
+]
