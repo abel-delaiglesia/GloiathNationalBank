@@ -1,13 +1,19 @@
 # **International Business Men**
 *(Duración máxima: 4 horas)*
 
-Trabajas para el GNB (Gloiath National Bank), y tu jefe, Barney Stinson, te ha pedido que diseñes e implementes una aplicación backend para ayudar a los ejecutivos de la empresa que vuelan por todo el mundo. Los ejecutivos necesitan un listado de cada producto con el que GNB comercia, y el total de la suma de las ventas de estos productos.
+Trabajas para el GNB (Gloiath National Bank), y tu jefe, Barney Stinson, te ha pedido que diseñes e implementes 
+una aplicación backend para ayudar a los ejecutivos de la empresa que vuelan por todo el mundo. Los ejecutivos 
+necesitan un listado de cada producto con el que GNB comercia, y el total de la suma de las ventas de estos productos.
 
-Para esta tarea debes crear un webservice. Este webservice puede devolver los resultados en formato XML o en JSON. Eres libre de escoger el formato con el que te sientas más cómodo (sólo es necesario que se implemente uno de los formatos).
+Para esta tarea debes crear un webservice. Este webservice puede devolver los resultados en formato XML o en JSON.
+ Eres libre de escoger el formato con el que te sientas más cómodo
+ (sólo es necesario que se implemente uno de los formatos).
 
 Recursos a utilizar:
 
-- [http://quiet-stone-2094.herokuapp.com/rates.xml](http://quiet-stone-2094.herokuapp.com/rates.xml) o [http://quiet-stone-2094.herokuapp.com/rates.json](http://quiet-stone-2094.herokuapp.com/rates.json) devuelve un documento con los siguientes formatos;
+- [http://quiet-stone-2094.herokuapp.com/rates.xml](http://quiet-stone-2094.herokuapp.com/rates.xml) 
+o [http://quiet-stone-2094.herokuapp.com/rates.json](http://quiet-stone-2094.herokuapp.com/rates.json) 
+devuelve un documento con los siguientes formatos;
 
 **XML**
 ```
@@ -30,7 +36,11 @@ Recursos a utilizar:
 ]
 ```
 
-Cada entrada en la colección especifica una conversión de una moneda a otra (cuando te devuelve una conversión, la conversión contraria también se devuelve), sin embargo hay algunas conversiones que no se devuelven, y en caso de ser necesarias, deberán ser calculadas utilizando las conversiones que se dispongan. Por ejemplo, en el ejemplo no se envía la conversión de USD a CAD, esta debe ser calculada usando la conversión USD a EUR y después EUR a CAD.
+Cada entrada en la colección especifica una conversión de una moneda a otra (cuando te devuelve una conversión,
+ la conversión contraria también se devuelve), sin embargo hay algunas conversiones que no se devuelven,
+ y en caso de ser necesarias, deberán ser calculadas utilizando las conversiones que se dispongan. 
+ Por ejemplo, en el ejemplo no se envía la conversión de USD a CAD, esta debe ser calculada usando 
+ la conversión USD a EUR y después EUR a CAD.
 
 - [http://quiet-stone-2094.herokuapp.com/transactions.xml](http://quiet-stone-2094.herokuapp.com/transactions.xml) o [http://quiet-stone-2094.herokuapp.com/transactions.json](http://quiet-stone-2094.herokuapp.com/transactions.json) devuelve un documento con los siguientes formatos:
 
@@ -57,13 +67,19 @@ Cada entrada en la colección especifica una conversión de una moneda a otra (c
 ]
 ```
 
-Cada entrada en la colección representa una transacción de un producto (el cual se identifica mediante el campo SKU), el valor de dicha transacción (amount) y la moneda utilizada (currency).
+Cada entrada en la colección representa una transacción de un producto (el cual se identifica mediante el campo SKU),
+ el valor de dicha transacción (amount) y la moneda utilizada (currency).
 
-La aplicación debe tener un método desde el cuál se pueda obtener el listado de todas las transacciones. Otro método con el que obtener todos los rates. Y por último un método al que se le pase un SKU, y devuelva un listado con todas las transacciones de ese producto en EUR, y la suma total de todas esas transacciones, también en EUR.
+La aplicación debe tener un método desde el cuál se pueda obtener el listado de todas las transacciones. 
+Otro método con el que obtener todos los rates. Y por último un método al que se le pase un SKU, y devuelva
+ un listado con todas las transacciones de ese producto en EUR, y la suma total de todas esas transacciones,
+ también en EUR.
 
 Por ejemplo, utilizando los datos anteriores, la suma total para el producto T2006 debería ser 14,99.
 
-Además necesitamos un plan B en caso que el webservice del que obtenemos la información no esté disponible. Para ello, la aplicación debe persistir la información cada vez que la obtenemos (eliminando y volviendo a insertar los nuevos datos). Puedes utilizar el sistema que prefieras para ello.
+Además necesitamos un plan B en caso que el webservice del que obtenemos la información no esté disponible.
+ Para ello, la aplicación debe persistir la información cada vez que la obtenemos (eliminando y volviendo a
+ insertar los nuevos datos). Puedes utilizar el sistema que prefieras para ello.
 
 ## **Requisitos**
 
@@ -77,6 +93,7 @@ Además necesitamos un plan B en caso que el webservice del que obtenemos la inf
 ## **Puntos extra (No obligatorios)**
 
     Estamos tratando con divisas, intenta no utilizar números con coma flotante.
-    Después de cada conversión, el resultado debe ser redondeado a dos decimales usando el redondeo Banker's Rounding (http://en.wikipedia.org/wiki/Rounding#Round_half_to_even)
+    Después de cada conversión, el resultado debe ser redondeado a dos decimales usando el redondeo Banker's
+	Rounding (http://en.wikipedia.org/wiki/Rounding#Round_half_to_even)
     
  **Por favor, el comentario del commit final ha de ser "Finished", para informarnos de que se ha finalizado la prueba.**
