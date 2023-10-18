@@ -12,7 +12,7 @@ namespace WebApiGNB.Helpers
         {
             var listconversion = new List<ConversionModel>();
             HttpClient client = new HttpClient();
-            var getAllTbl = client.GetAsync("http://localhost:7806/api/Conversion")
+            var getAllTbl = client.GetAsync("http://localhost:17906/api/Conversion")
                .ContinueWith(response =>
                {
                    var res = response.Result;
@@ -34,7 +34,7 @@ namespace WebApiGNB.Helpers
             var listconversion = new List<ConversionModel>();
 
             HttpClient client = new HttpClient();
-            var getAllTbl = client.GetAsync(string.Concat("http://localhost:7806/api/Conversion?from=", from, "&to=", to))
+            var getAllTbl = client.GetAsync(string.Concat("http://localhost:17906/api/Conversion?from=", from, "&to=", to))
                .ContinueWith(response =>
                {
                    var res = response.Result;
@@ -55,7 +55,7 @@ namespace WebApiGNB.Helpers
         {
             var listsku = new List<TransSkuModel>();
             HttpClient client = new HttpClient();
-            var getAllTbl = client.GetAsync("http://localhost:7806/api/TransSku")
+            var getAllTbl = client.GetAsync("http://localhost:17906/api/TransSku")
                .ContinueWith(response =>
                {
                    var res = response.Result;
@@ -76,7 +76,7 @@ namespace WebApiGNB.Helpers
         {
             var listConverted = new List<TransSkuModel>();
             HttpClient client = new HttpClient();
-            var getAllTbl = client.GetAsync(string.Concat("http://localhost:7806/api/TransSku?sku=",_totalData.Sku))
+            var getAllTbl = client.GetAsync(string.Concat("http://localhost:17906/api/TransSku?sku=", _totalData.Sku))
                .ContinueWith(response =>
                {
                    var res = response.Result;

@@ -112,7 +112,7 @@
                         <fieldset class="well">
                             <legend class="well-legend">Select Sku to convert: </legend>
    
-                            Sku name: <input type="text" name="Skuname" id="Skuname">
+                            Insert Sku name: <input type="text" name="Skuname" id="Skuname">
                             Currency: <select id="Currency">
                                 <option value="EUR">EUR</option>
                                 <option value="USD">USD</option>
@@ -160,18 +160,27 @@
 
                         <fieldset class="well">
                             <legend class="well-legend">Total Amount: </legend>
-
-                            @if (Model.TotalAmount != "")
-                             {
-                                     <label><h1>@Model.TotalAmount €</h1></label>
-
-                              }
-                              else
-                              {
-                                   <label> 0 €</label>
-                              }
-                        </fieldset>
-
+                            <table class="table table-sm alert">
+                                <thead>
+                                    <tr>
+                                        <th>Amount</th>
+                                        <th>Currency</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="TblTotalAmount"></tbody>
+                                <tr>
+                                    <td>
+                                        @if (Model.TotalAmount != "")
+                                        {
+                                            <h1>@Model.TotalAmount</h1>
+                                        }
+                                    </td>
+                                    <td>
+                                        <label id="idCurrency"><h1>@Model.Currency</h1></label>
+                                    </td>
+                                </tr>
+                                </table>
+                            </fieldset>
                     </div>
                 </form>
 
@@ -222,12 +231,13 @@
 <script>
 
 
-
     function onClick() {
 
         var sku = $('#Skuname').val();
         var currency = $('#Currency').val();
+     //   var labelText = document.getElementById('idCurrency');
 
+     //   labelText.innerHTML = "<h1>" + currency + "</h1>";
         window.location = '@Html.Raw(Url.Action("PaintTableConversions", "Home",new { SkuAndCurr = "_SaC" }))'.replace("_SaC", sku.concat('-', currency));
      };
 

@@ -8,5 +8,6 @@
 {"TransactionSku":"R2008","Amount":"17.95","Currency":"USD"}
 {"TransactionSku":"T2006","Amount":"7.63","Currency":"EUR"}
 {"TransactionSku":"B2009","Amount":"21.23","Currency":"USD"}
-{"sku":"B2009","amount":"21.23","amountCurrency":"USD","change":"15,63","currency":"EUR"}
+{"sku":"T2006","amount":"10.00","amountCurrency":"USD","change":"13,66","currency":"CAD"}
+{"sku":"T2006","amount":"7.63","amountCurrency":"EUR","change":"10,42","currency":"CAD"}
 ]
